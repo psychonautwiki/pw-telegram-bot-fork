@@ -8,7 +8,7 @@ use futures::{Future, FutureExt};
 use tokio::time::timeout;
 use tracing_futures::Instrument;
 
-use telegram_bot_raw::{HttpRequest, Request, ResponseType};
+use pw_telegram_bot_raw_fork::{HttpRequest, Request, ResponseType};
 
 use crate::connector::{default_connector, Connector};
 use crate::errors::{Error, ErrorKind};

@@ -1,8 +1,8 @@
 use std::fs::File;
 use std::io::prelude::*;
 
-use telegram_bot_raw::types::message::MessageKind;
-use telegram_bot_raw::types::update::{Update, UpdateKind};
+use pw_telegram_bot_raw_fork::types::message::MessageKind;
+use pw_telegram_bot_raw_fork::types::update::{Update, UpdateKind};
 
 macro_rules! make_test {
     ($asset: ident, $test: expr) => {

@@ -1,3 +1,3 @@
 //! Telegram Bot API methods.
 
-pub use telegram_bot_raw::requests::*;
+pub use pw_telegram_bot_raw_fork::requests::*;

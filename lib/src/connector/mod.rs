@@ -6,7 +6,7 @@ use std::fmt::Debug;
 use std::pin::Pin;
 
 use futures::Future;
-use telegram_bot_raw::{HttpRequest, HttpResponse};
+use pw_telegram_bot_raw_fork::{HttpRequest, HttpResponse};
 
 use crate::errors::Error;
 

@@ -1,6 +1,6 @@
-//! Utility traits that extends [`telegram_bot_raw::types::message`]
+//! Utility traits that extends [`pw_telegram_bot_raw_fork::types::message`]
 //!
-//! [`telegram_bot_raw::types::message`]: ../../telegram_bot_raw/types/message/index.html
+//! [`pw_telegram_bot_raw_fork::types::message`]: ../../pw_telegram_bot_raw_fork/types/message/index.html
 
 use crate::prelude::CanGetFile;
 use crate::types::{

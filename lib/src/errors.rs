@@ -6,15 +6,15 @@ pub struct Error(ErrorKind);
 
 #[derive(Debug)]
 pub(crate) enum ErrorKind {
-    Raw(telegram_bot_raw::Error),
+    Raw(pw_telegram_bot_raw_fork::Error),
     Hyper(hyper::Error),
     Http(hyper::http::Error),
     Io(std::io::Error),
     InvalidMultipartFilename,
 }
 
-impl From<telegram_bot_raw::Error> for ErrorKind {
-    fn from(error: telegram_bot_raw::Error) -> Self {
+impl From<pw_telegram_bot_raw_fork::Error> for ErrorKind {
+    fn from(error: pw_telegram_bot_raw_fork::Error) -> Self {
         ErrorKind::Raw(error)
     }
 }
