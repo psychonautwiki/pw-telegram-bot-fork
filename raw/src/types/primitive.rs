@@ -1,8 +1,9 @@
 use std::fmt;
 
+use serde::{Deserialize, Serialize};
 use serde::de;
-use serde::de::{Deserialize, Deserializer, Unexpected, Visitor};
-use serde::ser::{Serialize, Serializer};
+use serde::de::{Deserializer, Unexpected, Visitor};
+use serde::ser::Serializer;
 
 /// The Telegram `Integer`, currently i64.
 pub type Integer = i64;

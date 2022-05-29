@@ -1,7 +1,9 @@
+use serde::{Deserialize, Serialize};
+
 use crate::types::*;
 
 /// This object represents changes in the status of a chat member.
-#[derive(Debug, Clone, PartialEq, PartialOrd, Deserialize)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Serialize, Deserialize)]
 pub struct ChatMemberUpdate {
     /// Chat the user belongs to
     pub chat: Chat,

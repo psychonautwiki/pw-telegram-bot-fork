@@ -1,8 +1,10 @@
 use std::ops::Not;
 
+use serde::{Deserialize, Serialize};
+
 use crate::types::*;
 
-#[derive(Debug, Clone, PartialEq, PartialOrd, Serialize)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ReplyMarkup {
     InlineKeyboardMarkup(InlineKeyboardMarkup),
@@ -42,7 +44,7 @@ impl From<ForceReply> for ReplyMarkup {
 }
 
 /// This object represents a custom keyboard with reply options.
-#[derive(Debug, Clone, PartialEq, PartialOrd, Serialize)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Serialize, Deserialize)]
 pub struct ReplyKeyboardMarkup {
     keyboard: Vec<Vec<KeyboardButton>>,
     #[serde(skip_serializing_if = "Not::not")]
@@ -114,7 +116,7 @@ impl From<Vec<Vec<KeyboardButton>>> for ReplyKeyboardMarkup {
 }
 
 /// This object represents one button of the reply keyboard.
-#[derive(Debug, Clone, PartialEq, PartialOrd, Serialize)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Serialize, Deserialize)]
 pub struct KeyboardButton {
     text: String,
     #[serde(skip_serializing_if = "Not::not")]
@@ -166,7 +168,7 @@ impl From<String> for KeyboardButton {
 /// By default, custom keyboards are displayed until a new keyboard is sent
 /// by a bot. An exception is made for one-time keyboards that are hidden
 /// immediately after the user presses a button (see ReplyKeyboardMarkup).
-#[derive(Debug, Clone, PartialEq, PartialOrd, Serialize)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Serialize, Deserialize)]
 pub struct ReplyKeyboardRemove {
     remove_keyboard: True,
     #[serde(skip_serializing_if = "Not::not")]
@@ -192,7 +194,7 @@ impl ReplyKeyboardRemove {
 }
 
 /// This object represents an inline keyboard that appears right next to the message it belongs to.
-#[derive(Debug, Clone, PartialEq, PartialOrd, Serialize)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Serialize, Deserialize)]
 pub struct InlineKeyboardMarkup {
     inline_keyboard: Vec<Vec<InlineKeyboardButton>>,
 }
@@ -225,7 +227,7 @@ impl From<Vec<Vec<InlineKeyboardButton>>> for InlineKeyboardMarkup {
 }
 
 /// This object represents one button of an inline keyboard.
-#[derive(Debug, Clone, PartialEq, PartialOrd, Serialize)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Serialize, Deserialize)]
 pub struct InlineKeyboardButton {
     text: String,
     #[serde(flatten)]
@@ -275,7 +277,7 @@ impl InlineKeyboardButton {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, PartialOrd, Serialize)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Serialize, Deserialize)]
 pub enum InlineKeyboardButtonKind {
     #[serde(rename = "url")]
     Url(String), // TODO(knsd): Url?
@@ -298,7 +300,7 @@ pub enum InlineKeyboardButtonKind {
 /// selected the bot‘s message and tapped ’Reply'). This can be
 /// extremely useful if you want to create user-friendly step-by-step
 /// interfaces without having to sacrifice privacy mod
-#[derive(Debug, Clone, PartialEq, PartialOrd, Serialize)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Serialize, Deserialize)]
 pub struct ForceReply {
     force_reply: True,
     #[serde(skip_serializing_if = "Not::not")]

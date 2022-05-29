@@ -1,7 +1,8 @@
 use std::fmt;
 use std::ops::Deref;
 
-use serde::ser::{Serialize, Serializer};
+use serde::{Deserialize, Serialize};
+use serde::ser::Serializer;
 
 use crate::types::*;
 
@@ -90,7 +91,7 @@ impl ToSourceChat for MessageOrChannelPost {
 
 /// Unique identifier for the target chat or username of the
 /// target channel (in the format @channelusername)
-#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Deserialize)]
 pub enum ChatRef {
     Id(ChatId),
     #[doc(hidden)]

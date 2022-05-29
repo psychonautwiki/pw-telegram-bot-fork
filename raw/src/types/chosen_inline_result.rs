@@ -1,7 +1,9 @@
+use serde::{Deserialize, Serialize};
+
 use crate::types::*;
 
 /// Represents a result of an inline query that was chosen by the user and sent to their chat partner.
-#[derive(Debug, Clone, PartialEq, PartialOrd, Deserialize)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Serialize, Deserialize)]
 pub struct ChosenInlineResult {
     /// The unique identifier for the result that was chosen
     pub result_id: String,

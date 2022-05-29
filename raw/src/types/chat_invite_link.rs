@@ -1,7 +1,9 @@
+use serde::{Deserialize, Serialize};
+
 use crate::types::*;
 
 /// Represents an invite link for a chat.
-#[derive(Debug, Clone, PartialEq, PartialOrd, Deserialize)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Serialize, Deserialize)]
 pub struct ChatInviteLink {
     /// The invite link. If the link was created by another chat administrator, then the second part of the link will be replaced with “…”.
     pub invite_link: String,

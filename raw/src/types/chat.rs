@@ -1,9 +1,10 @@
-use serde::de::{Deserialize, Deserializer, Error};
+use serde::{Deserialize, Serialize};
+use serde::de::{Deserializer, Error};
 
 use crate::types::*;
 
 /// This object represents a Telegram user or bot.
-#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Deserialize)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Serialize, Deserialize)]
 pub struct User {
     /// Unique identifier for this user or bot.
     pub id: UserId,
@@ -20,7 +21,7 @@ pub struct User {
 }
 
 /// This object represents a group.
-#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Deserialize)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Serialize, Deserialize)]
 pub struct Group {
     /// Unique identifier for this chat.
     pub id: GroupId,
@@ -35,7 +36,7 @@ pub struct Group {
 }
 
 /// This object represents a supergroup.
-#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Deserialize)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Serialize, Deserialize)]
 pub struct Supergroup {
     /// Unique identifier for this chat.
     pub id: SupergroupId,
@@ -50,7 +51,7 @@ pub struct Supergroup {
 }
 
 /// This object represents a channel.
-#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Deserialize)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Serialize, Deserialize)]
 pub struct Channel {
     /// Unique identifier for this chat.
     pub id: ChannelId,
@@ -65,7 +66,7 @@ pub struct Channel {
 }
 
 /// This object represents a private, group or supergroup.
-#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Serialize, Deserialize)]
 pub enum MessageChat {
     Private(User),
     Group(Group),
@@ -86,7 +87,7 @@ impl MessageChat {
 }
 
 /// This object represents a chat.
-#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Serialize)]
 pub enum Chat {
     Private(User),
     Group(Group),
@@ -157,7 +158,7 @@ impl<'de> Deserialize<'de> for Chat {
 }
 
 /// This object represents a chat, directly mapped.
-#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Deserialize)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Serialize, Deserialize)]
 pub struct RawChat {
     /// Unique identifier for this chat.
     pub id: Integer,

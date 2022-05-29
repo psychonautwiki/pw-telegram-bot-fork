@@ -1,7 +1,8 @@
-use crate::types::*;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Clone, PartialEq, PartialOrd, Deserialize)]
+use crate::types::*;
+
+#[derive(Debug, Clone, PartialEq, PartialOrd, Serialize, Deserialize)]
 pub struct InlineQuery {
     pub id: InlineQueryId,
     pub from: User,

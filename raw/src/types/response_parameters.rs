@@ -1,9 +1,10 @@
-use serde::de::{Deserialize, Deserializer, Error};
+use serde::{Deserialize, Serialize};
+use serde::de::{Deserializer, Error};
 
 use crate::types::*;
 
 /// All API responses are from this type. Mostly used internal.
-#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Serialize)]
 pub enum ResponseWrapper<T> {
     /// Request was successful.
     Success {
@@ -19,7 +20,7 @@ pub enum ResponseWrapper<T> {
     },
 }
 
-impl<'de, T: Deserialize<'de>> Deserialize<'de> for ResponseWrapper<T> {
+impl<'de, T: Deserialize<'de>> Deserialize<'de>  for ResponseWrapper<T> {
     fn deserialize<D>(deserializer: D) -> Result<ResponseWrapper<T>, D::Error>
     where
         D: Deserializer<'de>,
@@ -27,7 +28,7 @@ impl<'de, T: Deserialize<'de>> Deserialize<'de> for ResponseWrapper<T> {
         let raw: RawResponse<T> = Deserialize::deserialize(deserializer)?;
         match (raw.ok, raw.description, raw.result) {
             (false, Some(description), None) => Ok(ResponseWrapper::Error {
-                description: description,
+                description,
                 parameters: raw.parameters,
             }),
             (true, None, Some(result)) => Ok(ResponseWrapper::Success { result: result }),
@@ -37,7 +38,7 @@ impl<'de, T: Deserialize<'de>> Deserialize<'de> for ResponseWrapper<T> {
 }
 
 /// Directly mapped telegram API response.
-#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Deserialize)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Serialize, Deserialize)]
 pub struct RawResponse<T> {
     /// If ‘ok’ equals true, the request was successful.
     ok: bool,
@@ -50,7 +51,7 @@ pub struct RawResponse<T> {
 }
 
 /// Contains information about why a request was unsuccessful.
-#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Deserialize)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Serialize, Deserialize)]
 pub struct ResponseParameters {
     /// The group has been migrated to a supergroup with the specified identifier.
     pub migrate_to_chat_id: Option<Integer>,

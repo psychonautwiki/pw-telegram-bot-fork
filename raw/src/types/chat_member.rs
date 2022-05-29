@@ -1,12 +1,13 @@
 use std::fmt;
 
+use serde::{Deserialize, Serialize};
 use serde::de;
-use serde::de::{Deserialize, Deserializer, Visitor};
+use serde::de::{Deserializer, Visitor};
 
 use crate::types::*;
 
 /// The member's status in the chat
-#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Serialize)]
 pub enum ChatMemberStatus {
     Creator,
     Administrator,
@@ -52,7 +53,7 @@ impl<'de> Deserialize<'de> for ChatMemberStatus {
 }
 
 /// This object contains information about one member of the chat.
-#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Deserialize)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Serialize, Deserialize)]
 pub struct ChatMember {
     /// Information about the user.
     pub user: User,
